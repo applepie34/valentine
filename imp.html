@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/1200x/11/09/64/11096424c353c709d27eaf7d2365babe.jpg');
+            background-size: cover;
+            background-color: #fff0f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #000000;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            position: relative;
+            height: 100px;
+            margin-left: -150px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        #noBtn {
+            background-color: #ced4da;
+            color: #495057;
+            position: absolute;
+            left: 60%; /* Start to the right of Yes */
+        }
+
+        .success-message {
+            display: none;
+            color: #000000;
+            font-size: 2rem;
+            animation: heartBeat 1.5s infinite;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-content">
+        <h1 id="question">Will you be my Valentine? ❤️</h1>
+        <div class="buttons" id="button-group">
+            <button id="yesBtn" onclick="celebrate()">YES</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">NO</button>
+        </div>
+        <div id="success" class="success-message">
+            Yay! Love you so much ♥️🥰
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Calculate a random position within the screen boundaries
+            // Subtracting button dimensions to keep it on screen
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+            // Set new position
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function celebrate() {
+            // Hide the question and buttons
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('button-group').style.display = 'none';
+            
+            // Show the success message
+            document.getElementById('success').style.display = 'block';
+            
+            // Optional: Launch confetti or change background
+            document.body.style.backgroundColor = '#ffccd5';
+        }
+    </script>
+
+</body>
+</html>
